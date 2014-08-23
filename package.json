@@ -11,9 +11,5 @@
   },
   "dependencies": {
     "express": "~4.8.5",
-    "view-helpers": "~0.1.5",
-    "connect-flash": "~0.1.1",
-    "mean-logger": "0.0.1",
-    "lodash": "~2.4.1"
   }
 }
