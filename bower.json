@@ -1,0 +1,20 @@
+{
+  "name": "Post",
+  "version": "0.1.0",
+  "authors": [
+    "Ian Williams <me@ianwillia.ms>"
+  ],
+  "description": "App for digesting feeds and returning a daily or bidaily read.",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "~0.10.6"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Post",
+  "version": "0.1.0",
+  "description": "App for digesting feeds and returning a daily or bidaily read.",
+  "main": "app/index.js",
+  "author": "Ian Williams <me@ianwillia.ms>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "~3.8.7"
+  },
+  "dependencies": {
+    "express": "~4.8.5"
+  }
+}
