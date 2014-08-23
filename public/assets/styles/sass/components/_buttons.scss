@@ -1,0 +1,128 @@
+.btn {
+  background: $gray2;
+  @include border-radius(3px);
+  @include box-shadow(0 3px 0 0 $gray1);
+  color: white;
+  display: inline-block;
+  font-family: $font-stack-alright-sans;
+  font-size: 0.875rem;
+  font-weight: 800;
+  @extend .no-highlight;
+  line-height: 1em;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem;
+  padding-bottom: .75rem;
+  @include transition($transition-time opacity linear);
+
+  // Align icons
+  i {
+    display: inline-block;
+    @include transition(250ms ease all);
+    vertical-align: -2px;
+
+    &.ss-navigateright {
+      margin-left: 8px;
+    }
+
+    &.ss-navigateleft {
+      margin-right: 8px;
+    } 
+
+    &.ss-loading {
+      display: none;
+      font-size: 15px;
+      -webkit-transform-origin-y: 38%; /* Safari 4+ */
+      -moz-transform-origin-y:    38%; /* Fx 5+ */
+      -o-transform-origin-y:      38%; /* Opera 12+ */
+      transform-origin-y:         38%; /* IE 10+, Fx 29+ */
+
+      &:last-child {
+        margin-left: 7px;
+      }
+      &:first-child {
+        margin-right: 7px;
+      }
+    }   
+  }
+
+  &.btn-small {
+    padding: 0.75rem;
+    padding-bottom: 0.5rem;
+    text-transform: none;
+  }
+
+
+  /**
+   * States
+   */
+
+  &:hover {
+  	color: white;
+
+    i.ss-navigateright {
+      @include transform(translateX(5px));
+    }
+    i.ss-navigateleft {
+      @include transform(translateX(-5px));
+    }
+
+    &.disabled {
+      i {
+        @include transform(none !important);
+      }
+    }
+  }
+
+  &.loading {
+
+    i.ss-loading {
+      display: inline-block;
+      -webkit-animation: appear 300ms cubic-bezier(1,0,0,1) forwards, rotate 1s infinite linear; /* Safari 4+ */
+      -moz-animation:    appear 300ms cubic-bezier(1,0,0,1) forwards, rotate 1s infinite linear; /* Fx 5+ */
+      -o-animation:      appear 300ms cubic-bezier(1,0,0,1) forwards, rotate 1s infinite linear; /* Opera 12+ */
+      animation:         appear 300ms cubic-bezier(1,0,0,1) forwards, rotate 1s infinite linear; /* IE 10+, Fx 29+ */
+
+    }
+
+    i.ss-navigateright, i.ss-navigateleft {
+      display: none;
+    }
+  }
+
+  &.btn-green {
+  	background: $green;
+  	@include box-shadow(0 3px 0 0 $dark-green);
+  }
+
+  &.btn-gray {
+    background: $gray4;
+    @include box-shadow(0 3px 0 0 $gray3);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+  }
+
+}
+
+
+/**
+ * Keyframes for rotating loader
+ */
+@include keyframes(rotate) {
+  0% {
+    @include transform(none);
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+@include keyframes(appear) {
+  0% {
+    @include transform(translateY(100px));
+  }
+  100% {
+    @include transform(translateY(0px));
+  }
+}

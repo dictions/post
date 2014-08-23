@@ -6,3 +6,6 @@ logs
 node_modules/
 bower_components/
 .DS_Store
+
+# Config
+config/env/local.js

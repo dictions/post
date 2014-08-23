@@ -1,0 +1,89 @@
+/**
+ * Information tooltips
+ */
+.popover {
+  @extend i;
+  position: relative;
+
+  &:before {
+    content: '❓';
+    display: inline-block;
+    font-family: 'ss-gizmo';
+  }
+
+  .popover-content {
+    background: white;
+    @include border-radius(3px);
+    @include box-shadow(0 1px 1px 0 rgba($gray1,0.2), 0 0px 10px 0 rgba($gray1,0.02));
+    color: $gray3;
+    font-family: $font-stack-alright-sans;
+    left: 2rem;
+    max-width: 20rem;
+    opacity: 0;
+    padding: 1.25rem;
+    pointer-events: none;
+    position: absolute;
+    text-transform: none;
+    top: 37%;  
+    @include transition($transition-time cubic-bezier(.37,.39,.03,.98) all);
+    white-space: normal;
+    width: 20rem;
+    min-height: 4rem;
+    z-index: 1;  
+    @include transform(translate(5%, -50%));
+
+    &:before {
+      background: white;
+      @include box-shadow(0px 1px 1px 0 rgba($gray1,0.2));
+      content: '';
+      clip: rect(8px,16px,40px,0px); // cut off arrow shadow
+      display: block;
+      height: 24px;
+      left: -14px;
+      @include transform(rotate(45deg) translateY(-50%));
+      position: absolute;
+      top: 46%;
+      width: 24px;
+      z-index: -1;
+    }
+
+    p, ul, ol, td {
+      @extend .t4;
+      @extend .t-alt;
+      line-height: $line-height-body;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul.bullet-list li:before {
+      opacity: 0.25;
+    }
+
+    table {
+      border: none;
+      width: 100%;
+
+      tr:nth-of-type(even) {
+        background: none;
+      }
+
+      td {
+        padding: 0;
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  &:hover, &.active {
+    .popover-content {
+      opacity: 1;
+      pointer-events: auto;
+      @include transform(translate(0%, -50%));
+    }
+  }
+}

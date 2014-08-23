@@ -1,0 +1,85 @@
+/**
+ * Inline List
+ */
+.inline-list {
+  margin: 0;
+  margin-bottom: -$line-height-body;
+
+  * {
+    display: inline;
+  }
+
+  li {
+    display: inline-block;
+    float: none;
+    margin: 0;
+  }
+
+  &:after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+  }
+}
+
+/**
+ * Default List
+ */
+
+ul {
+  font-size: inherit;
+  list-style: none;
+  margin: 0;
+  margin-bottom: $line-height-body;
+
+  li {
+    line-height: $line-height-body;
+  }
+}
+
+
+/**
+ * Spaced List
+ */
+
+ul.spaced {
+
+  li {
+    line-height: 2em;
+
+    &:before {
+      top: 0.8em;
+    }
+  }
+}
+
+/**
+ * Bulleted List
+ */
+.bullet-list {
+  padding-left: 1.5em;
+
+  li {
+    position: relative;
+
+    &:before {
+      @extend i;
+      font-family: 'ghg-icon';
+      color: $gray2;
+      content: 'bullet';
+      display: inline-block;
+      font-size: 10px;
+      left: -1.5em;
+      margin-right: .5em;
+      position: absolute;
+      top: 0.5em;
+    }
+  }
+
+  &.light-bullets {
+
+    li:before {
+      color: $gray4;
+    }
+  }
+}

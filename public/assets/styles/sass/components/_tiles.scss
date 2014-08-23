@@ -1,0 +1,219 @@
+[class*="block-grid-"] {
+  margin: 0 -20px -40px -20px; // half of column width, remove gutter from bottom
+
+  > li {
+    padding: 0 20px 40px 20px;
+  }
+  
+  img {
+    width: 100%;
+  }
+}
+
+/**
+ * This is a Default Tile
+ * these are the white rounded corner elements 
+ * used on top of a well
+ */
+.tile {
+  background: $white;
+  @include border-radius($border-radius);
+  @include box-shadow(0 1px 1px 0 rgba($gray1,0.2));
+  overflow: hidden;
+
+  &.dark {
+    background: $gray6;
+  }
+}
+
+
+
+
+/**
+ * Project Tile on the index page
+ */
+
+.tile.project {
+  @extend .flex-height;
+  @extend .alright-subhead;
+  color: $gray4;
+  // Min Height for Start New Project button
+  min-height: 205px;
+
+  .project-meta {
+    //Cozy things up a bit
+    padding-bottom: 2rem;
+
+    h4 {
+      @extend .t3;
+      @extend .t-alt;
+      @extend .inika-head; 
+      color: $gray3;
+      font-weight: 800;
+      margin-bottom: 1em;
+    }
+  }
+
+  .graph {
+    background: $gray3;
+  }
+
+  footer {
+    @extend .row;
+    background: $gray6;
+    line-height: 1em;
+    padding: 0.875rem 0;
+  }
+
+  /**
+   * State
+   */
+  &.add-project {
+    background: white url('/assets/img/start_project_bg.png') no-repeat 128% 50%;
+    background-size: 80%;
+    display: static;
+    text-align: center;
+
+    // center button
+    .center-btn {
+      margin: 0 -20px; // hardcoded row
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+      width: 100%;
+    }
+  }
+}
+
+
+/**
+ * LUT Tile
+ */
+
+.tile.lut-select {
+  margin: 0;
+  padding: 0;
+
+  .category-select {
+    background: white;
+  }
+}
+
+/**
+ * Emissions Tile
+ */
+
+.tile.emissions {
+  margin: 0 !important;
+  overflow: visible;
+  padding: 2.5rem;
+
+  header {
+    border-bottom: 2px solid $gray5;
+    display: block;
+    padding-bottom: 1.25rem;
+
+      h3 {
+      @extend .t3;
+      font-size: 1.125rem;
+      font-weight: 800;
+
+      .popover {
+        color: $gray3;
+        vertical-align: -3px;
+      }
+    }
+  }
+
+  table {
+    border: none;
+    width: 100%;
+
+    tr td {
+      padding: 0;
+      vertical-align: baseline;
+
+      &:first-child {
+        width: 50%;
+      }
+    }
+
+    // Header stylings
+    h4 {
+      font-family: 'Antic Slab';
+      font-size: 1.75rem;
+    }
+    h5 {
+      @extend .alright-subhead;
+    }
+  }
+  
+}
+
+
+/**
+ * Results row for Emissions Tile
+ */
+.tile.emissions .results {
+  background: $gray5;
+  @include border-radius(0 0 $border-radius $border-radius);
+  color: lighten($gray4, 10%);
+  margin-left: -2.5rem;
+  margin-right: -2.5rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem 0;
+  text-align: center;
+
+  h4 {
+    font-family: $font-stack-inika;
+    font-size: 1.875rem;
+  }
+}
+
+
+/**
+ * Mitigated Emissions tile
+ */
+.tile.emissions.mitigated {
+  @include border-radius(0 0 $border-radius $border-radius);
+
+  h3, h4 {
+    color: $green;
+  }
+
+  h5 {
+    color: darken($dark-green, 10%);
+  }
+
+  .results {
+    background: $green;
+    text-align: left;
+    padding: 1.25rem;
+
+    h4 {
+      color: $white;
+      font-family: $font-stack-antic;
+      font-size: 2.25rem;
+    }
+  }
+}
+
+/**
+ * Override Mitigated Tile if we don't have any savings
+ */
+
+.tile.emissions.mitigated.no-savings {
+
+  h3, h4, h5 {
+    color: $gray4;
+  }
+
+  .results {
+    background: $gray5;
+
+    h4, h5 {
+      color: lighten($gray4, 10%);
+    }
+  }
+}

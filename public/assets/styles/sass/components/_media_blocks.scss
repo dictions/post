@@ -1,0 +1,23 @@
+/**
+ * Media Block
+ * This is used to align a photo on the left
+ * and text on the right
+ */
+.media-block {
+  @extend .clearfix;
+
+  > * {
+    display: table-cell;
+
+    &:first-child {
+      width: auto;
+      display: inherit;
+      float: left;
+      margin-right: 0.625rem;
+    }
+  }
+
+  .align-middle {
+    vertical-align: middle;
+  }
+}

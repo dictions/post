@@ -1,0 +1,197 @@
+/**
+ * Default input
+ */
+
+input {
+  border: none;
+  color: $green;
+  font-family: 'Antic Slab';
+  font-size: 2rem;
+  padding: 0.5rem 0.85rem;
+
+  &:focus {
+    outline: none;
+
+  }
+}
+
+label {
+  @extend .alright-subhead;
+  @extend .uppercase;
+  color: $gray4;
+}
+
+.error label {
+  color: $gray4;
+}
+
+
+/**
+ * Big underline input
+ */
+
+.underline-input {
+  background: none;
+  border-bottom: 2px solid $gray5;
+  font-size: 3.75rem;
+  padding: 0 0 0.5rem 0;
+  margin: 1.25rem 0 !important; // Foundation resets this on error
+
+  &:focus {
+    outline: none;
+    border-bottom-color: $gray4;
+  }
+}
+
+input.span, .label-input {
+  width: 100%;
+}
+
+.label-input {
+  border: none;
+  @include border-radius(3px);
+  display: table;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  tr, td {
+    margin: 0;
+    padding: 0;
+  }
+
+  label, input {
+    display: table-cell;
+  }
+
+  .label-input-label { // :)
+    background: $gray4;
+    white-space: nowrap;
+  }
+
+  label {
+    color: white;
+    cursor: default;
+    padding: 0 1.25rem;
+    white-space: nowrap;
+  }
+
+  input {
+    width: 100%;
+  }
+
+
+  /**
+   * Error sizing
+   */
+  i {
+    font-size: 1rem;
+    position: absolute;
+    right: 1.25rem;
+    top: 1.75rem;
+
+    &:before {
+      left: 25%;
+      top: 5%;
+      @include transform(none);
+    }
+  }
+
+
+  // Show helper icon
+  i.valid, i.error {
+    display: none;
+  }
+  &.error {
+    i.error {
+      display: block;
+    }
+  }
+  &.valid {
+    i.valid {
+      display: block;
+    }
+  }
+}
+
+textarea {
+  background: $gray6;
+  @include border-radius(3px);
+  border: 2px solid $gray5;
+  @include box-shadow(none);
+  font-size: 1rem;
+  min-height: 8rem;
+  padding: 1.5rem;
+  @include transition(none);
+
+  &:focus {
+    background: $gray6;
+    border-color: $gray4;
+    @include box-shadow(none);
+  }
+} 
+
+input[type="range"] {
+  padding: 0;
+}
+
+label {
+  cursor: default;
+}
+
+
+
+
+/**
+ * Validation
+ */
+
+.underline-input-container {
+  position: relative;
+
+  i {
+    font-size: 25px;
+    position: absolute;
+    right: 1rem;
+    top: 4rem;
+
+    &:before {
+      left: 25%;
+      top: 5%;
+      @include transform(none);
+    }
+  }
+
+  label {
+    display: inline;
+
+    &.error {
+      margin-left: 1rem;
+    }
+  }
+
+  // Show helper icon
+  i.valid, i.error {
+    display: none;
+  }
+  &.error {
+    i.error {
+      display: block;
+    }
+  }
+  &.valid {
+    i.valid {
+      display: block;
+    }
+  }
+}
+
+/**
+ * Error labeling
+ */
+
+label.error {
+  letter-spacing: inherit;
+  opacity: 0.75;
+  text-transform: none;
+}
