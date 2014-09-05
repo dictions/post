@@ -7,6 +7,8 @@
           var Q = require('q');
 var stumbleupon = require('./stumbleupon');
    var facebook = require('./facebook');
+   var linkedin = require('./linkedin');
+  var pinterest = require('./pinterest');
 
 // var socialRank = function(url){
 

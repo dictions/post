@@ -12,7 +12,7 @@ var sConfig = require('../../../../config/social');
  * Build the Facebook URL
  */
 var buildURL = function(url){
-  return sConfig.facebookAPI + 'url=\'' + url + '\'';
+  return sConfig.facebookAPI + '?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count,commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url=\'' + url + '\'';
 };
 
 
