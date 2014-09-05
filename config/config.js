@@ -5,8 +5,6 @@
  */
 var _ = require('lodash');
 
-
-
 /**
  * Module Exports
  */
