@@ -15,11 +15,17 @@ var buildURL = function(url){
   return sConfig.stumbleuponAPI + '?url=' + url;
 };
 
+
 /**
  * Make a request to Stumble Upon
  * @return Q promise of null or data
  */
 var getData = function(url){
+
+  if (!url) {
+    throw 'Cannot fetch without a URL';
+    return false;
+  }
 
   var url = buildURL(url);
   var deferred = Q.defer();
@@ -46,29 +52,8 @@ var getData = function(url){
   return deferred.promise;
 };
 
-/**
- * Return a promise for Stumble Upon Views Count
- * @return Q promise
- */
-var getViews = function(url){
-
-  var deferred = Q.defer();
-
-  getData(url)
-  .then(function(data){
-    if (data) {
-      deferred.resolve(data.views);
-    } else {
-      deferred.reject(null);
-    }
-  });
-
-  return deferred.promise;
-
-};
-
 
 /**
- * Expose getViews();
+ * Expose data
  */
-exports.getViews = getViews;
+exports.getData = getData;

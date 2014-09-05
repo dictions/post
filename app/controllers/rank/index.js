@@ -5,5 +5,5 @@
  */
 var social = require('./social');
 
-social.stumbleupon.getViews('http://google.com')
-.then(function(views){console.log(views)});
+social.facebook.getData('http://google.com')
+.then(function(data){console.log(data)});
