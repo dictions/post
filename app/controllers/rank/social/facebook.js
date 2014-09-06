@@ -53,8 +53,48 @@ var getData = function(url){
   return deferred.promise;
 };
 
+/**
+ * Parse return from Facebook API and return metric
+ * @return Number
+ */
+var parseMetric = function(obj){
+
+  // Handle Error ;)
+  if (obj == null) {
+    throw 'Error parsing return';
+    return 0;
+  } else {
+    return obj.total_count;
+  }
+}
+
+
+/**
+ * Make API call and return important metric
+ * @return Number
+ */
+var getMetric = function(url){
+
+  var deferred = Q.defer();
+
+  getData(url).then(function(data){
+
+    // Handle error 
+    if (data == null) {
+      deferred.reject(null);
+    } else {
+      deferred.resolve(parseMetric(data));
+    }
+
+  })
+
+  return deferred.promise;
+
+};
+
 
 /**
  * Expose
  */
 exports.getData = getData;
+exports.getMetric = getMetric;
