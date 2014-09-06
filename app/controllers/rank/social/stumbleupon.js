@@ -3,16 +3,17 @@
 /**
  * Module Dependencies
  */
-var Q = require('q');
+      var Q = require('q');
 var request = require('request');
 var sConfig = require('../../../../config/social');
+   var util = require('../../util');
 
 
 /**
  * Build the Stumble Upon URL
  */
 var buildURL = function(url){
-  return sConfig.stumbleuponAPI + '?url=' + url;
+  return sConfig.stumbleuponAPI + '?url=' + util.url.sanatize(url);
 };
 
 

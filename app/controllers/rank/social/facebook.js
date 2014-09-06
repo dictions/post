@@ -3,16 +3,17 @@
 /**
  * Module Dependencies
  */
-var Q = require('q');
+      var Q = require('q');
 var request = require('request');
 var sConfig = require('../../../../config/social');
+   var util = require('../../util');
 
 
 /**
  * Build the Facebook URL
  */
 var buildURL = function(url){
-  return sConfig.facebookAPI + '?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count,commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url=\'' + url + '\'';
+  return sConfig.facebookAPI + '?q=SELECT url, normalized_url, share_count, like_count, comment_count, total_count,commentsbox_count, comments_fbid, click_count FROM link_stat WHERE url=\'' + util.url.sanatize(url) + '\'';
 };
 
 

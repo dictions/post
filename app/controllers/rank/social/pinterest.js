@@ -3,16 +3,17 @@
 /**
  * Module Dependencies
  */
-var Q = require('q');
+      var Q = require('q');
 var request = require('request');
 var sConfig = require('../../../../config/social');
+   var util = require('../../util');
 
 
 /**
  * Build the Pinterest URL
  */
 var buildURL = function(url){
-  return sConfig.pinterestAPI + 'urls/count.json?&url=' + url;
+  return sConfig.pinterestAPI + 'urls/count.json?&url=' + util.url.sanatize(url);
 };
 
 
