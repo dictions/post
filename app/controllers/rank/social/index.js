@@ -5,6 +5,7 @@
  */
       var async = require('async');
           var Q = require('q');
+          var _ = require('lodash');
 var stumbleupon = require('./stumbleupon');
    var facebook = require('./facebook');
    var linkedin = require('./linkedin');
@@ -83,6 +84,6 @@ var socialMetric = function(url){
 };
 
 /**
- * Expose socialRank()
+ * Expose socialMetric()
  */
-//exports.socialRank = socialRank;
+//exports.socialMetric = socialMetric;
