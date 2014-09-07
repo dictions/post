@@ -9,31 +9,78 @@ var stumbleupon = require('./stumbleupon');
    var facebook = require('./facebook');
    var linkedin = require('./linkedin');
   var pinterest = require('./pinterest');
+    var twitter = require('./twitter');
 
-// var socialRank = function(url){
 
-//   var deferred = Q.defer();
+/**
+ * Pull Social Metrics Asynchronously 
+ * @return Q promise of object containing all metrics
+ */
+var socialMetric = function(url){
 
-//   async.parallel({
-//     stumbleuponViews: function(callback){
-//       stumbleupon.getData(url).then(function(data){
-//         callback(null, data.views);
-//       });
-//     },
-//     facebookShares: function(callback){
-//       facebook.getData(url).then(function(data){
-//         callback(null, data.share_count);
-//       });
-//     }
-//   },
-//   function(err, results) {
-//     if (err) deferred.reject(null);
-//     deferred.resolve(results);
-//   });
+  var deferred = Q.defer();
 
-//   return deferred.promise;
+  // Pull from all social APIs
+  async.parallel({
+    facebook: function(callback){
+      facebook.getMetric(url).then(function(metric){
+        if (metric == null) {
+          callback('Error requesting metric', null);
+        } else if (metric == parseInt(metric)) {
+          callback(null, metric);
+        }
+      });
+    },
+    twitter: function(callback){
+      twitter.getMetric(url).then(function(metric){
+        if (metric == null) {
+          callback('Error requesting metric', null);
+        } else if (metric == parseInt(metric)) {
+          callback(null, metric);
+        }
+      });
+    },
+    pinterest: function(callback){
+      pinterest.getMetric(url).then(function(metric){
+        if (metric == null) {
+          callback('Error requesting metric', null);
+        } else if (metric == parseInt(metric)) {
+          callback(null, metric);
+        }
+      });
+    },
+    linkedin: function(callback){
+      linkedin.getMetric(url).then(function(metric){
+        if (metric == null) {
+          callback('Error requesting metric', null);
+        } else if (metric == parseInt(metric)) {
+          callback(null, metric);
+        }
+      });
+    },
+    stumbleupon: function(callback){
+      stumbleupon.getMetric(url).then(function(metric){
+        if (metric == null) {
+          callback('Error requesting metric', null);
+        } else if (metric == parseInt(metric)) {
+          callback(null, metric);
+        }
+      });
+    },
+  },
+  // Create Social Metric Object
+  function(err, results) {
+    if (err) {
+      throw err;
+      deferred.reject(null);
+    } else {
+      deferred.resolve(results);
+    }
+  });
 
-// };
+  return deferred.promise;
+
+};
 
 /**
  * Expose socialRank()

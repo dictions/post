@@ -71,7 +71,7 @@ var parseMetric = function(obj){
 
 /**
  * Make API call and return important metric
- * @return Number
+ * @return Q promise of Number
  */
 var getMetric = function(url){
 

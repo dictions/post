@@ -54,7 +54,48 @@ var getData = function(url){
 };
 
 
+
+/**
+ * Parse return from Stumbleupon API and return metric
+ * @return Number
+ */
+var parseMetric = function(obj){
+
+  // Handle Error ;)
+  if (obj == null) {
+    throw 'Error parsing return';
+    return 0;
+  } else {
+    return obj.views;
+  }
+}
+
+
+/**
+ * Make API call and return important metric
+ * @return Q promise of Number
+ */
+var getMetric = function(url){
+
+  var deferred = Q.defer();
+
+  getData(url).then(function(data){
+
+    // Handle error 
+    if (data == null) {
+      deferred.reject(null);
+    } else {
+      deferred.resolve(parseMetric(data));
+    }
+
+  })
+
+  return deferred.promise;
+
+};
+
 /**
  * Expose data
  */
 exports.getData = getData;
+exports.getMetric = getMetric;
