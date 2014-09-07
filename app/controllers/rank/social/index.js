@@ -86,4 +86,4 @@ var socialMetric = function(url){
 /**
  * Expose socialMetric()
  */
-//exports.socialMetric = socialMetric;
+exports.socialMetric = socialMetric;

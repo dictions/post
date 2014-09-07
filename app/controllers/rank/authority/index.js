@@ -13,7 +13,7 @@ var aConfig = require('../../../../config/authority');
  * Build the Alexa URL
  */
 var buildURL = function(url){
-  return aConfig.alexaAPI + '?cli=10&url=' + util.url.sanatize(url);
+  return aConfig.alexaAPI + '?cli=10&url=' + util.url.domain(url);
 };
 
 
@@ -58,7 +58,7 @@ var getData = function(url){
 var parseMetric = function(xml){
 
   // Grab the Alexa Rank string from XML response
-  var reachString = xml.match(/<REACH.+/g)[0];
+  var reachString = xml.match(/<REACH.+/)[0];
   var rank = reachString.split("\"")[1];
 
   // Handle Error ;)
@@ -75,7 +75,7 @@ var parseMetric = function(xml){
  * Make API call and return important metric
  * @return Q promise of Number
  */
-var getMetric = function(url){
+var getRank = function(url){
 
   var deferred = Q.defer();
 
@@ -94,11 +94,9 @@ var getMetric = function(url){
 
 };
 
-getMetric('google.com').then(function(rank){console.log(rank)});
-
 
 /**
  * Expose
  */
 exports.getData = getData;
-exports.getMetric = getMetric;
+exports.getRank = getRank;
