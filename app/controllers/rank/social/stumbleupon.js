@@ -66,7 +66,7 @@ var parseMetric = function(obj){
     throw 'Error parsing return';
     return 0;
   } else {
-    return obj.views;
+    return parseInt(obj.views);
   }
 }
 
