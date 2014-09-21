@@ -63,7 +63,7 @@ var parseMetric = function(xml){
 
   // Handle Error ;)
   if (rank == parseInt(rank)) {
-    return rank;
+    return parseInt(rank);
   } else {
     throw 'Error parsing return';
     return null;
@@ -75,7 +75,7 @@ var parseMetric = function(xml){
  * Make API call and return important metric
  * @return Q promise of Number
  */
-var getRank = function(url){
+var getMetric = function(url){
 
   var deferred = Q.defer();
 
@@ -99,4 +99,4 @@ var getRank = function(url){
  * Expose
  */
 exports.getData = getData;
-exports.getRank = getRank;
+exports.getMetric = getMetric;

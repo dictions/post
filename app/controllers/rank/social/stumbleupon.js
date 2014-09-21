@@ -65,6 +65,8 @@ var parseMetric = function(obj){
   if (obj == null) {
     throw 'Error parsing return';
     return 0;
+  } else if(!('views' in obj)) {
+    return 0;
   } else {
     return parseInt(obj.views);
   }

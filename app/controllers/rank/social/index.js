@@ -5,6 +5,7 @@
  */
       var async = require('async');
           var Q = require('q');
+          var _ = require('lodash');
 var stumbleupon = require('./stumbleupon');
    var facebook = require('./facebook');
    var linkedin = require('./linkedin');
@@ -14,15 +15,15 @@ var stumbleupon = require('./stumbleupon');
 
 /**
  * Pull Social Metrics Asynchronously 
- * @return Q promise of object containing all metrics
+ * @return Q promise of Integer
  */
-var socialMetric = function(url){
+var getMetric = function(url){
 
   var deferred = Q.defer();
 
   // Pull from all social APIs
-  async.parallel({
-    facebook: function(callback){
+  async.parallel([
+    function(callback){
       facebook.getMetric(url).then(function(metric){
         if (metric == null) {
           callback('Error requesting metric', null);
@@ -31,7 +32,7 @@ var socialMetric = function(url){
         }
       });
     },
-    twitter: function(callback){
+    function(callback){
       twitter.getMetric(url).then(function(metric){
         if (metric == null) {
           callback('Error requesting metric', null);
@@ -40,7 +41,7 @@ var socialMetric = function(url){
         }
       });
     },
-    pinterest: function(callback){
+    function(callback){
       pinterest.getMetric(url).then(function(metric){
         if (metric == null) {
           callback('Error requesting metric', null);
@@ -49,7 +50,7 @@ var socialMetric = function(url){
         }
       });
     },
-    linkedin: function(callback){
+    function(callback){
       linkedin.getMetric(url).then(function(metric){
         if (metric == null) {
           callback('Error requesting metric', null);
@@ -58,7 +59,7 @@ var socialMetric = function(url){
         }
       });
     },
-    stumbleupon: function(callback){
+    function(callback){
       stumbleupon.getMetric(url).then(function(metric){
         if (metric == null) {
           callback('Error requesting metric', null);
@@ -66,15 +67,16 @@ var socialMetric = function(url){
           callback(null, metric);
         }
       });
-    },
-  },
+    }
+  ],
   // Create Social Metric Object
   function(err, results) {
     if (err) {
       throw err;
       deferred.reject(null);
     } else {
-      deferred.resolve(results);
+      var total = _.reduce(results, function(a, b){return a+b})
+      deferred.resolve(total);
     }
   });
 
@@ -83,6 +85,6 @@ var socialMetric = function(url){
 };
 
 /**
- * Expose socialMetric()
+ * Expose
  */
-exports.getMetrics = socialMetric;
+exports.getMetric = getMetric;
